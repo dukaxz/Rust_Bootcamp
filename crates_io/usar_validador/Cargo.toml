@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 validador = { path = "../validador" } # busca do diretório local
+# tambem tendo busca pelo github e pelo proprio crates
