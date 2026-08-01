@@ -1,0 +1,60 @@
+// // ===============================
+// // Cargo Watch
+// // ===============================
+
+// // Executa "cargo run" e permanece monitorando os arquivos.
+// // Sempre que você salvar uma alteração, o projeto será
+// // recompilado e executado novamente.                            // cargo watch -x run
+
+
+
+// // Executa "cargo build" automaticamente a cada alteração.
+// // Útil quando você quer apenas verificar se o projeto
+// // compila sem necessariamente executá-lo.                   // cargo watch -x build
+
+
+
+// // ===============================
+// // Compilando com rustc
+// // ===============================
+
+// // Nota: o main é o nome do arquivo e pode ser mudado
+
+// // Compila apenas o arquivo main.rs em modo Debug.
+// // O executável será salvo em "out/main".                    // rustc src/main.rs -o out/main
+
+
+
+// // Compila em modo Release (-O ativa otimizações).
+// // O executável gerado será mais rápido, porém o
+// // tempo de compilação pode ser maior.                       // rustc -O src/main.rs -o out/main
+
+
+
+// // Executa o binário gerado.                     // ./out/main
+
+
+
+
+// // ===============================
+// // Compilando com Cargo
+// // ===============================
+
+// // Compila e executa o projeto em modo Release.  
+// // Ativa otimizações, gerando um programa mais rápido.       // cargo run --release
+
+
+
+// ===============================
+// Formatação de código
+// ===============================
+
+// Formata apenas um arquivo específico.
+// Útil para arquivos isolados ou exemplos.         // rustfmt src/main.rs
+
+
+
+// Formata todo o projeto Cargo.
+// Percorre os arquivos da pasta src, testes,
+// exemplos e demais arquivos do projeto.           // cargo fmt
+

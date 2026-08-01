@@ -1,0 +1,108 @@
+// =============================================================================
+//  TIPOS DE DADOS EM RUST — TABELA DE REFERÊNCIA
+// =============================================================================
+
+// ── INTEIROS COM SINAL ────────────────────────────────────────────────────────
+//  Tipo    Bits   Intervalo               Quando usar
+//  i8       8     -128  a  127            Flags compactas, valores pequenos
+
+//  i16     16     -32.768 a 32.767        Sensores, áudio PCM de 16 bits
+
+//  i32     32     -2bi  a  2bi  (padrão)  Contadores, índices, IDs — uso geral
+
+//  i64     64     muito grande            Timestamps Unix, tamanho de arquivos
+
+//  i128   128     enorme                  Criptografia, UUIDs, hashes longos
+
+//  isize  arq.   depende de 32/64-bit    Diferença entre ponteiros, offsets
+
+let x: i32    = 5 + 1;
+let ts: i64   = 1716000000;   // timestamp Unix
+let h: i128   = 0xDEADBEEF;
+
+// ── INTEIROS SEM SINAL ────────────────────────────────────────────────────────
+//  Tipo    Bits   Intervalo               Quando usar
+//  u8       8     0 a 255                 Bytes brutos, pixels RGB, dados binários
+
+//  u16     16     0 a 65.535              Portas de rede (HTTP=80, HTTPS=443)
+
+//  u32     32     0 a ~4 bilhões          Contadores sem negativo, cores RGBA
+
+//  u64     64     muito grande            Tamanho de arquivo, hash SHA, IDs únicos
+
+//  u128   128     gigantesco              UUIDs, endereços IPv6
+
+//  usize  arq.   sem sinal, 32/64-bit    Índice de array/Vec — OBRIGATÓRIO no Rust
+
+let pixel: u8   = 255;
+let porta: u16  = 8080;
+let cor: u32    = 0xFF_AA_00_FF;
+let id: u64     = 9_000_000_000;
+
+let i: usize    = 0;
+let v = arr[i]; // índice SEMPRE precisa ser usize
+
+// ── PONTO FLUTUANTE ───────────────────────────────────────────────────────────
+//  Tipo   Bits   Precisão       Quando usar
+//  f32     32    ~7  dígitos    Gráficos, shaders, jogos (precisão total não é crítica)
+
+//  f64     64    ~15 dígitos    Cálculos científicos, financeiros, físicos — PADRÃO
+
+let escala: f32 = 1.5;
+let pi: f64     = 3.14159265358979;   // prefira f64 na dúvida
+
+// ── BOOLEANO ─────────────────────────────────────────────────────────────────
+//  Tipo   Valores        Quando usar
+//  bool   true / false   Condicionais, flags de estado, controle de loop
+
+let ativo: bool = true;
+if ativo {
+    println!("sistema ligado");
+}
+
+// ── CARACTERE ────────────────────────────────────────────────────────────────
+//  Tipo   Bytes   Quando usar
+//  char    4      Processar texto char a char; suporta Unicode completo e emojis
+//                 ATENÇÃO: usa aspas SIMPLES, não duplas
+
+let letra: char = 'A';
+let emoji: char = '😊';
+
+// ── COMPOSTOS ────────────────────────────────────────────────────────────────
+
+// TUPLE — tipos DIFERENTES, tamanho fixo, acesso por .0 .1 .2 ...
+// Uso: retornar múltiplos valores de uma função, agrupar dados relacionados
+
+let t: (i32, f64, bool) = (5, 3.14, true);
+let numero = t.0;   // 5
+let decimal = t.1;  // 3.14
+let flag = t.2;     // true
+
+// ARRAY [T; N] — tipo IGUAL, tamanho fixo em COMPILAÇÃO, armazenado na STACK
+// Uso: listas de tamanho conhecido — dias da semana, buffers fixos, tabelas
+
+let dias: [&str; 3] = ["seg", "ter", "qua"];
+let primeiro = dias[0]; // "seg"
+
+// Inicializar com valor repetido:
+let zeros = [0u8; 8]; // [0, 0, 0, 0, 0, 0, 0, 0]
+
+// VEC<T> — array DINÂMICO no heap, cresce em tempo de execução
+// Uso: quando o tamanho não é conhecido em tempo de compilação
+
+let mut lista: Vec<i32> = vec![1, 2, 3];
+lista.push(4); // agora é [1, 2, 3, 4]
+
+// =============================================================================
+//  DECISÃO RÁPIDA
+//  Número inteiro geral     → i32
+//  Índice de array / slice  → usize   (obrigatório!)
+//  Byte / dado binário      → u8
+//  Porta de rede            → u16
+//  Decimal geral            → f64
+//  Verdadeiro / falso       → bool
+//  Um caractere             → char
+//  Valores mistos agrupados → tuple (A, B, C)
+//  Lista tamanho fixo       → [T; N]
+//  Lista que cresce         → Vec<T>
+// =============================================================================
